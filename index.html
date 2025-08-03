@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이탈리아 & 스페인 10일 여행 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful -->
+    <!-- Application Structure Plan: A single-page, top-to-bottom scrolling infographic. The narrative follows the trip's chronology: 1. A header with key stats (days, countries, travelers). 2. A section on the Italy itinerary, leading into... 3. A dedicated analysis of the "Milan Day Trip Dilemma" using a donut chart to visualize the time trade-off. 4. A section on the Spain itinerary, leading into... 5. A "Barcelona Day Trip Showdown" using a bar chart to compare travel times for different cities. 6. A practical section on "Group Travel Logistics" using a table. 7. A final section with "Pro-Traveler Tips". This structure tells a story, guiding the user from the overall plan to specific, data-driven decision points. -->
+    <!-- Visualization & Content Choices: Data Point: Milan day trip feasibility. Goal: Compare. Visualization: Chart.js Donut Chart. Justification: Best for showing proportions of a whole (a day's available time). Data Point: Barcelona day trip options. Goal: Compare. Visualization: Chart.js Horizontal Bar Chart. Justification: Ideal for comparing a single metric (travel time) across multiple categories. Data Point: Group transportation options. Goal: Organize. Visualization: HTML Table. Justification: Perfect for displaying structured data with multiple attributes (cost, capacity, pros/cons). Data Point: Itinerary timeline. Goal: Change/Organize. Visualization: Styled HTML/CSS with Tailwind. Justification: Provides a clear, custom visual flow without using prohibited SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 50vh;
+            }
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 9999px;
+            background-color: #FC913A;
+            border: 3px solid white;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 0.45rem;
+            top: 1rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">이탈리아 & 스페인 10일</h1>
+            <p class="text-xl text-gray-600 mt-2">6인 그룹을 위한 핵심 데이터 시각화</p>
+        </header>
+
+        <section class="card">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                    <p class="text-4xl font-bold text-[#FF4E50]">10</p>
+                    <p class="text-sm text-gray-600">총 여행일</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-[#FC913A]">2</p>
+                    <p class="text-sm text-gray-600">방문 국가</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-[#F9D423]">6</p>
+                    <p class="text-sm text-gray-600">총 여행 인원</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-[#FF4E50]">4+</p>
+                    <p class="text-sm text-gray-600">방문 도시</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-8">🇮🇹 이탈리아 여정 (9/25 - 9/29)</h2>
+            <div class="relative">
+                <div class="timeline-line hidden sm:block"></div>
+                <div class="space-y-8">
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 1: 로마 도착 및 체크인</h3>
+                        <p class="text-gray-600 text-sm">FCO 공항 도착 후 6인승 밴으로 숙소 이동 및 휴식</p>
+                    </div>
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 2-4: 로마 & 바티칸 탐험</h3>
+                        <p class="text-gray-600 text-sm">콜로세움, 바티칸, 보르게세 미술관 등 핵심 명소 방문 (모두 사전 예약 필수)</p>
+                    </div>
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 5: 밀라노 당일치기 & 바르셀로나 이동</h3>
+                        <p class="text-gray-600 text-sm">오전 활동 후 FCO 공항에서 바르셀로나로 항공 이동</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-2">밀라노 당일치기, 괜찮을까?</h2>
+            <p class="text-center text-gray-600 mb-6">로마-밀라노 당일치기는 기술적으로 가능하지만, 이동 시간이 상당 부분을 차지합니다. 아래 차트는 하루 중 이동 시간과 실제 관광 시간의 비율을 보여줍니다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="chart-container">
+                    <canvas id="milanTripChart"></canvas>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="font-bold text-xl">시간 분석</h3>
+                    <p class="mt-2 text-gray-700">고속열차로 왕복 약 <span class="font-bold text-[#FF4E50]">6시간</span>이 소요됩니다. 이는 하루의 약 절반에 해당하는 시간으로, 밀라노의 핵심 명소(두오모, 갤러리아)를 둘러보기엔 다소 빠듯할 수 있습니다.</p>
+                    <h3 class="font-bold text-xl mt-4">대안</h3>
+                    <p class="mt-2 text-gray-700">로마에서 여유로운 오전을 보내거나, 다음 여행을 기약하는 것도 좋은 선택입니다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-8">🇪🇸 스페인 여정 (9/29 - 10/5)</h2>
+             <div class="relative">
+                <div class="timeline-line hidden sm:block"></div>
+                <div class="space-y-8">
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 5-6: 바르셀로나 도착 & 가우디 투어</h3>
+                        <p class="text-gray-600 text-sm">BCN 공항 도착 후 휴식. 다음날 사그라다 파밀리아, 구엘 공원 등 가우디 걸작 탐험</p>
+                    </div>
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 7: 몬세라트 투어</h3>
+                        <p class="text-gray-600 text-sm">사전 예약한 투어로 몬세라트 수도원 방문</p>
+                    </div>
+                    <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 8-9: 근교 당일치기 선택</h3>
+                        <p class="text-gray-600 text-sm">마드리드, 발렌시아 등 다양한 옵션 중 그룹의 취향에 맞춰 선택</p>
+                    </div>
+                     <div class="relative timeline timeline-item">
+                        <h3 class="font-bold text-lg">Day 10: 출국</h3>
+                        <p class="text-gray-600 text-sm">오전 자유시간 후 BCN 공항에서 오후 6시 비행기 탑승</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-2">바르셀로나 근교 당일치기 대결</h2>
+            <p class="text-center text-gray-600 mb-6">바르셀로나에서는 다양한 도시로 당일치기가 가능합니다. 이동 시간을 비교하여 가장 효율적인 여행지를 선택해 보세요.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                 <div class="order-2 md:order-1">
+                    <h3 class="font-bold text-xl">주요 옵션 비교</h3>
+                    <ul class="mt-2 space-y-2 text-gray-700">
+                        <li><strong class="text-[#FF4E50]">마드리드:</strong> 스페인의 수도. 왕복 5-6시간 소요로 가장 길지만 프라도 미술관 등 볼거리가 풍부.</li>
+                        <li><strong class="text-[#FC913A]">발렌시아:</strong> 예술과 과학의 도시. 왕복 5-6시간 소요.</li>
+                        <li><strong class="text-[#F9D423]">타라고나:</strong> 로마 유적과 해변. 왕복 2시간 소요.</li>
+                        <li><strong class="text-[#EDE574]">지로나:</strong> 중세 도시. 왕복 1.5시간 내외로 가장 효율적.</li>
+                    </ul>
+                </div>
+                <div class="chart-container order-1 md:order-2">
+                    <canvas id="barcelonaDayTripChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold text-center mb-6">6인 그룹 이동수단 옵션</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">이동수단</th>
+                            <th scope="col" class="px-6 py-3">장점</th>
+                            <th scope="col" class="px-6 py-3">단점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">일반 택시 x 2</th>
+                            <td class="px-6 py-4">비교적 잡기 쉬움</td>
+                            <td class="px-6 py-4">총 비용 증가, 그룹 분리</td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">6인승 밴/택시</th>
+                            <td class="px-6 py-4">한 번에 이동, 편리함</td>
+                            <td class="px-6 py-4">사전 예약 권장, 비용 높음</td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">대중교통</th>
+                            <td class="px-6 py-4">가장 저렴함</td>
+                            <td class="px-6 py-4">짐이 많을 경우 불편, 시간 소요</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const milanCtx = document.getElementById('milanTripChart').getContext('2d');
+        new Chart(milanCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['이동 시간 (왕복)', '밀라노 체류 시간'],
+                datasets: [{
+                    data: [6, 6],
+                    backgroundColor: ['#FF4E50', '#FC913A'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                return `약 ${context.raw} 시간`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const barcelonaCtx = document.getElementById('barcelonaDayTripChart').getContext('2d');
+        new Chart(barcelonaCtx, {
+            type: 'bar',
+            data: {
+                labels: ['지로나', '타라고나', '발렌시아', '마드리드'],
+                datasets: [{
+                    label: '왕복 이동 시간 (시간)',
+                    data: [1.5, 2, 5.5, 5.5],
+                    backgroundColor: ['#EDE574', '#F9D423', '#FC913A', '#FF4E50'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '시간'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
